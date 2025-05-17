@@ -1,12 +1,11 @@
 
-import React from 'react';
-import { Progress } from "@/components/ui/progress";
+import React, { useEffect, useRef } from 'react';
 
 type SkillCategory = {
   name: string;
   skills: {
     name: string;
-    proficiency: number;
+    proficiency: number; // We'll keep this in the data structure but won't display it
   }[];
 };
 
@@ -57,6 +56,32 @@ const Skills = () => {
       ]
     }
   ];
+  
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  
+  useEffect(() => {
+    // Create an observer for animation on scroll
+    observerRef.current = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add skill-item-animate class to trigger animation
+          entry.target.classList.add('skill-item-animate');
+          // Once animated, no need to observe this element anymore
+          observerRef.current?.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observe all skill items
+    document.querySelectorAll('.skill-item').forEach(item => {
+      observerRef.current?.observe(item);
+    });
+
+    return () => {
+      // Clean up
+      observerRef.current?.disconnect();
+    };
+  }, []);
 
   return (
     <section id="skills" className="py-20 bg-tech-dark-navy">
@@ -72,16 +97,14 @@ const Skills = () => {
             >
               <h3 className="text-xl font-medium mb-6 text-tech-teal">{category.name}</h3>
               
-              <div className="space-y-5">
-                {category.skills.map(skill => (
-                  <div key={skill.name} className="mb-4">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-tech-light-slate">{skill.name}</span>
-                    </div>
-                    <Progress 
-                      value={skill.proficiency} 
-                      className="h-2 bg-tech-teal/20"
-                    />
+              <div className="grid grid-cols-2 gap-4">
+                {category.skills.map((skill, skillIndex) => (
+                  <div 
+                    key={skill.name} 
+                    className="skill-item px-4 py-3 bg-tech-light-navy/50 rounded-md border border-tech-teal/20 hover:border-tech-teal/60 transition-all duration-300 opacity-0"
+                    style={{ animationDelay: `${0.05 * skillIndex}s` }}
+                  >
+                    <span className="text-tech-light-slate font-medium">{skill.name}</span>
                   </div>
                 ))}
               </div>
