@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Progress } from "@/components/ui/progress";
 
 type SkillCategory = {
   name: string;
@@ -73,17 +74,14 @@ const Skills = () => {
               
               <div className="space-y-5">
                 {category.skills.map(skill => (
-                  <div key={skill.name} className="mb-3">
-                    <div className="flex justify-between mb-1">
-                      <span>{skill.name}</span>
-                      <span className="text-tech-teal">{skill.proficiency}%</span>
+                  <div key={skill.name} className="mb-4">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-tech-light-slate">{skill.name}</span>
                     </div>
-                    <div className="skill-bar">
-                      <div 
-                        className="skill-progress"
-                        style={{ width: `${skill.proficiency}%` }}
-                      ></div>
-                    </div>
+                    <Progress 
+                      value={skill.proficiency} 
+                      className="h-2 bg-tech-teal/20"
+                    />
                   </div>
                 ))}
               </div>
