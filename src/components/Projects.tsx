@@ -16,26 +16,38 @@ type Project = {
 const Projects = () => {
   const projects: Project[] = [
     {
-      title: "Network Security Architecture & Monitoring System",
-      description: "Designed and implemented a comprehensive network security architecture with integrated monitoring, securing enterprise networks against common attack vectors while providing real-time monitoring and alerting capabilities.",
-      technologies: ["GNS3", "VMware", "Nagios", "ELK Stack"],
+      title: "autostart-docker-container",
+      description: "A simple Bash script that ensures a Docker container starts automatically on system boot. It checks for the container's existence and running status, and starts it if it's not running.",
+      technologies: ["Bash", "Docker", "System Administration"],
+      links: {
+        github: "https://github.com/YassineCommits/autostart-docker-conatiner"
+      },
       highlight: true
     },
     {
-      title: "Azure Kubernetes E-Commerce Deployment",
-      description: "Deployed a .NET MVC E-commerce application on Azure Kubernetes Services with a complete CI/CD pipeline, ensuring scalability, high availability, and automated deployment processes.",
-      technologies: ["Azure Kubernetes Services", ".NET MVC", "Azure DevOps", "CI/CD"],
+      title: "Autostop-docker-containers",
+      description: "This script stops idle Docker containers after a specified period of inactivity. It's useful for saving resources by automatically halting containers that aren't actively used.",
+      technologies: ["Bash", "Docker", "Resource Management"],
+      links: {
+        github: "https://github.com/YassineCommits/Autostop-docker-containers"
+      },
       highlight: true
     },
     {
-      title: "Malicious URL Detection System",
-      description: "Built a PySpark ETL pipeline to process large datasets and train machine learning models for detecting malicious URLs, significantly improving threat detection rates.",
-      technologies: ["PySpark", "Decision Tree", "Random Forest", "ETL"],
+      title: "postgres-user-manager",
+      description: "A Node.js-based CLI tool to create, update, and delete PostgreSQL users. It simplifies PostgreSQL user management for developers or DBAs working with multiple environments.",
+      technologies: ["Node.js", "PostgreSQL", "CLI"],
+      links: {
+        github: "https://github.com/YassineCommits/postgres-user-manager"
+      }
     },
     {
-      title: "Network Monitoring Infrastructure",
-      description: "Implemented a robust network monitoring infrastructure using MPLS-TE and RSVP-TE for traffic engineering, with comprehensive monitoring via SNMP and Nagios.",
-      technologies: ["MPLS-TE", "RSVP-TE", "SNMP", "Nagios"],
+      title: "postgres-migration",
+      description: "A lightweight migration tool for PostgreSQL databases, built with Node.js. It allows developers to manage schema changes using simple SQL files and a versioning system.",
+      technologies: ["Node.js", "PostgreSQL", "Database Migration"],
+      links: {
+        github: "https://github.com/YassineCommits/postgres-migration"
+      }
     }
   ];
 
